@@ -87,7 +87,7 @@ Sync GitLab issues to Jira and marked the synced GitLab issues with a
 		}
 
 		jiraURL := viper.GetString("jira_url")
-		if token == "" {
+		if jiraURL == "" {
 			cobra.CheckErr("no Jira URLs were set in config")
 		}
 
@@ -150,7 +150,7 @@ func init() {
 	askVersion, err := rootCmd.Flags().GetBool("version")
 	cobra.CheckErr(err)
 
-	if askVersion {
+	if !askVersion {
 		err = rootCmd.MarkFlagRequired("gitlab-project")
 		cobra.CheckErr(err)
 
